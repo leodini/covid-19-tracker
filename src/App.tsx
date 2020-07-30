@@ -11,6 +11,9 @@ import { useState, useEffect } from 'react'
 import api from './api'
 import InfoBox from './components/InfoBox'
 import Map from './components/Map'
+import Table from './components/Table'
+import { sortData } from './utils/sortTableData'
+import LineGraph from './components/LineGraph.js'
 
 interface Country {
 	country: string
@@ -32,10 +35,13 @@ function App() {
 	const [countries, setCountries] = useState<Array<Country>>([])
 	const [country, setCountry] = useState<string>('worldwide')
 	const [countryInfo, setCountryInfo] = useState<CountryInfo>()
+	const [tableData, setTableData] = useState<any>([])
 
 	const fetchCountries = async () => {
 		const { data } = await api.get('/countries')
+		const sortedData = sortData(data)
 		setCountries(data)
+		setTableData(sortedData)
 	}
 
 	const onCountryChange = async (e: any) => {
@@ -45,7 +51,6 @@ function App() {
 	const fetchContryInfo = async () => {
 		const url = country === 'worldwide' ? 'all' : `/countries/${country}`
 		const { data } = await api.get(url)
-		console.log(data)
 		setCountryInfo(data)
 	}
 
@@ -105,10 +110,10 @@ function App() {
 			<Card className="app__right">
 				<CardContent>
 					<h3>Live Cases by Country</h3>
+					<Table countries={tableData} />
 					<h3>Worldwide new Cases</h3>
+					<LineGraph />
 				</CardContent>
-				{/* table */}
-				{/* graph */}
 			</Card>
 		</div>
 	)
