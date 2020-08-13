@@ -7,16 +7,15 @@ interface Props {
 	total: number
 }
 
-const InfoBox = (props: Props) => {
-	const { title, total, cases } = props
+const InfoBox: React.FC<Props> = ({ title, total, cases }) => {
 	return (
 		<Card>
 			<CardContent>
-				<Typography className="infoBox__title" color="textSecondary">
+				<Typography className='infoBox__title' color='textSecondary'>
 					{title}
 				</Typography>
-				<h2 className="infoBox__cases">{cases}</h2>
-				<Typography className="infoBox__total" color="textSecondary">
+				<h2 className='infoBox__cases'>{cases}</h2>
+				<Typography className='infoBox__total' color='textSecondary'>
 					{total}
 				</Typography>
 			</CardContent>
