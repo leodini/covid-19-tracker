@@ -43,6 +43,7 @@ function App() {
 	})
 	const [mapZoom, setMapZoom] = useState(3)
 	const [mapCountries, setMapCountries] = useState<any>([])
+	const [casesTypes, setCasesTypes] = useState('cases')
 
 	const fetchCountries = async () => {
 		const { data } = await api.get('/countries')
@@ -100,24 +101,37 @@ function App() {
 				</div>
 
 				<div className='app__stats'>
-					<InfoBox
-						title='Coronavirus cases'
-						total={countryInfo.cases}
-						cases={countryInfo.todayCases}
-					/>
-					<InfoBox
-						title='Recovered'
-						total={countryInfo.recovered}
-						cases={countryInfo.todayRecovered}
-					/>
-					<InfoBox
-						title='Deaths'
-						total={countryInfo.deaths}
-						cases={countryInfo.todayDeaths}
-					/>
+					<div onClick={() => setCasesTypes('cases')}>
+						<InfoBox
+							title='Coronavirus cases'
+							total={countryInfo.cases}
+							cases={countryInfo.todayCases}
+						/>
+					</div>
+					<div onClick={() => setCasesTypes('recovered')}>
+						<InfoBox
+							title='Recovered'
+							total={countryInfo.recovered}
+							cases={countryInfo.todayRecovered}
+							// onClick={() => setCasesTypes('recovered')}
+						/>
+					</div>
+					<div onClick={() => setCasesTypes('deaths')}>
+						<InfoBox
+							title='Deaths'
+							total={countryInfo.deaths}
+							cases={countryInfo.todayDeaths}
+							// onClick={() => setCasesTypes('deaths')}
+						/>
+					</div>
 				</div>
 
-				<Map center={mapCenter} zoom={mapZoom} countries={mapCountries} />
+				<Map
+					center={mapCenter}
+					zoom={mapZoom}
+					countries={mapCountries}
+					casesTypes={casesTypes}
+				/>
 			</div>
 			<Card className='app__right'>
 				<CardContent>
