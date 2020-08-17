@@ -1,0 +1,24 @@
+.infoBox {
+	width: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.recovered {
+	border-bottom: 2px solid green;
+	width: 300px;
+	display: flex;
+}
+
+.deaths {
+	width: 300px;
+	display: flex;
+	border-bottom: 2px solid red;
+}
+
+.cases {
+	width: 300px;
+	display: flex;
+	border-bottom: 2px solid blue;
+}

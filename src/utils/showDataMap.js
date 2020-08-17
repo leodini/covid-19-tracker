@@ -29,7 +29,9 @@ export const showDataOnMap = (data, casesTypes = 'cases') =>
 			}
 		>
 			<Popup>
-				<h1>i am a popup</h1>
+				<h1>
+					{numeral(country[casesTypes]).format('0,0')} {casesTypes}
+				</h1>
 			</Popup>
 		</Circle>
 	))

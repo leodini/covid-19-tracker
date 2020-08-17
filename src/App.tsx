@@ -9,7 +9,7 @@ import {
 import './App.css'
 import { useState, useEffect } from 'react'
 import api from './api'
-import InfoBox from './components/InfoBox'
+import InfoBox from './components/InfoBox.jsx'
 import Map from './components/Map.jsx'
 import Table from './components/Table'
 import { sortData } from './utils/sortTableData'
@@ -106,6 +106,7 @@ function App() {
 							title='Coronavirus cases'
 							total={countryInfo.cases}
 							cases={countryInfo.todayCases}
+							className='cases'
 						/>
 					</div>
 					<div onClick={() => setCasesTypes('recovered')}>
@@ -113,7 +114,7 @@ function App() {
 							title='Recovered'
 							total={countryInfo.recovered}
 							cases={countryInfo.todayRecovered}
-							// onClick={() => setCasesTypes('recovered')}
+							className='recovered'
 						/>
 					</div>
 					<div onClick={() => setCasesTypes('deaths')}>
@@ -121,7 +122,7 @@ function App() {
 							title='Deaths'
 							total={countryInfo.deaths}
 							cases={countryInfo.todayDeaths}
-							// onClick={() => setCasesTypes('deaths')}
+							className='deaths'
 						/>
 					</div>
 				</div>
